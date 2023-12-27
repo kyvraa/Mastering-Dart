@@ -1,11 +1,11 @@
-void main(List<String> args) {
-  Circle circle = Circle(10.2);
-  print(circle.circulateArea());
+// void main(List<String> args) {
+//   Circle circle = Circle(10.2);
+//   print(circle.circulateArea());
 
-  Car car = Car(195.0, 65.0);
-  print('car speed : ${car.speed}');
-  car.decrement();
-}
+//   Car car = Car(195.0, 65.0);
+//   print('whushhh: ${car.speed}');
+//   car.decrement();
+// }
 
 // 1 .  Abstract Class untuk Bentuk Geometri:
 
@@ -20,6 +20,8 @@ void main(List<String> args) {
 // Implementasi rumus luas di class turunan.
 // Syarat:
 // Subclass harus mengimplementasikan calculateArea().
+
+import 'dart:math';
 
 abstract class Shape {
   double circulateArea();
@@ -80,7 +82,6 @@ class Car extends Vehicle {
   }
 }
 
-
 // 3. Abstract Method untuk Koneksi Database:
 
 // Tipe Variabel:
@@ -110,6 +111,65 @@ class Car extends Vehicle {
 // Implementasi di class turunan.
 // Syarat:
 // Subclass harus mengimplementasikan move() dan attack().
+
+void main() {
+  Warior warior = Warior(
+      charachter: 'rifky',
+      health: 100,
+      ismove: true,
+      hitEnemy: true,
+      step: 300,
+      damage: 10280.0);
+
+  warior.attack();
+  warior.move(0);
+}
+
+abstract class GameCharachter {
+  void move(int jarak);
+  void attack();
+}
+
+class Warior extends GameCharachter {
+  String charachter;
+  double health;
+  bool? ismove;
+  bool? hitEnemy;
+  int step;
+  double damage;
+  Warior(
+      {required this.charachter,
+      required this.step,
+      required this.damage,
+      this.ismove,
+      this.hitEnemy,
+      required this.health});
+  @override
+  void move(int jarak) {
+    while (jarak < step) {
+      Future.delayed(Duration(milliseconds: 600), () {
+          jarak += 100;
+      });
+    }
+    print('charachter : $charachter , berlari sejauh : $jarak KM');
+  }
+
+  @override
+  void attack() {
+    Random randomAtck = Random();
+    var damageNow = damage.toInt() * randomAtck.nextInt(120) * 102;
+    if (ismove! && hitEnemy!) {
+      print(
+          'charachter name : $charachter , health : ${health.toInt()} , total damage : $damageNow');
+    } else {
+      print('uknown');
+    }
+  }
+}
+
+
+
+
 
 // 5. Penggunaan Abstract Class dalam Sistem Pembayaran:
 
