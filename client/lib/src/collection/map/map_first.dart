@@ -37,7 +37,7 @@ void maon() {
   });
 }
 
-void main() {
+void mains() {
   List<Dataset> dataset = [];
 
   List<Map<String, dynamic>> data = [
@@ -107,4 +107,28 @@ class Dataset {
       'description': description,
     };
   }
+}
+
+void main() {
+  List<Map<String, dynamic>> data = [
+    {"name": 'rifky', 'age': 20, 'description': 'rifky is handsome'},
+    {
+      "name": 'Bob',
+      'age': 30,
+      'description': 'Bob enjoys playing musical instruments.'
+    },
+    {
+      "name": 'Charlie',
+      'age': 22,
+      'description': 'Charlie is passionate about photography.'
+    },
+    {
+      "name": 'Diana',
+      'age': 28,
+      'description': 'Diana loves exploring new cuisines.'
+    }
+  ];
+
+  List filter = data.where((element) => element.containsKey("name")).map((e) => e["name"].toString()).toList();
+  print(filter);
 }
