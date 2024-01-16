@@ -13,16 +13,24 @@ Future<void> loadData() async {
     if (response.statusCode == 200) {
       final dynamic jsonBody = jsonDecode(response.body);
       if (jsonBody is List) {
-        for(var i = 0; i <= jsonBody.length - 95; i++){
-          print('title : ${jsonBody[i]["title"]}');
+        List<String> titles = [];
+        for (var i = 0; i < jsonBody.length; i++) {
+          Map<String, dynamic> dataTitle = jsonBody[i];
+          if (dataTitle.containsKey("title")) {
+            titles.add(dataTitle["title"]);
+          }
+        }
+        titles.sort();
+        for (var title in titles) {
+          print('Hasil : ${title[0].toUpperCase() + title.substring(1)}');
         }
       } else {
-        print('no');
+        print('wee');
       }
     } else {
-      print('err: ${response.statusCode}');
+      print('Error: ${response.statusCode}');
     }
   } catch (e) {
-    print('err: $e');
+    print('Error: $e');
   }
 }

@@ -32,7 +32,7 @@
 //   print(dataList);
 // }
 
-void main() {
+void mains() {
   List<int> data = List.generate(100, (index) => index);
 
   Map<String, dynamic> genericMap = Map.fromEntries(data.asMap().entries.map(
@@ -45,3 +45,30 @@ void main() {
   print(genericMap);
 }
 
+void main() {
+  List<dynamic> number = [
+    292,
+    192,
+    2891,
+    1000,
+    11,
+    129,
+    199,
+    2920,
+    10,
+    19,
+    [1212, 2929, 0009, 1.8, 1.1, 2929, 9988],
+    [10101, 1.5, 9.0]
+  ];
+
+
+  List<dynamic> filteredNumbers = number
+      .where((element) => element is int)
+      .expand((element) => element is List<int> ? [] : [element])
+      .toList();
+
+  // Mengurutkan bilangan bulat
+  filteredNumbers.sort();
+
+  print('Hasil : $filteredNumbers');
+}
